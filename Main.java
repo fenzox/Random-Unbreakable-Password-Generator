@@ -1,6 +1,6 @@
 package random;
 
-import java.util.Random;
+import java.security.SecureRandom;
 import java.util.Scanner;
 
 public class Main {
@@ -14,7 +14,7 @@ public class Main {
 		String newStr = "";
 		char temp;
 		
-		Random r = new Random();
+		SecureRandom r = new SecureRandom();
 		
 		for ( int i = 0; i < length; i++) {
 			temp = randomChar.charAt(r.nextInt(size));
@@ -35,6 +35,8 @@ public class Main {
 		Scanner input = new Scanner(System.in);
 		boolean numeric = false;
 		String value = "";
+		int count;
+		String str;
 		
 		while ( !numeric) {
 		System.out.print("Enter the length of your password: ");
@@ -46,11 +48,21 @@ public class Main {
 		}
 		}
 		
-		input.close();
+		System.out.print("How many passwords do you want? ");
+		count = input.nextInt();
+		System.out.println("");
 		int length = Integer.parseInt(value);
+		int val = 1;
+		while ( count > 0) {
+			str = randomGenerate(length);
+			System.out.println("Your new strong password " + val + ":" + str);
+			count--;
+			val++;
+		}
 		
-		String str = randomGenerate(length);
-		System.out.println("Your new strong password: " + str);
+		input.close();
+		
+
 	}
 
 }
